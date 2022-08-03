@@ -53,6 +53,9 @@ service Tikv {
     rpc RawCompareAndSwap(kvrpcpb.RawCASRequest) returns (kvrpcpb.RawCASResponse) {}
     rpc RawChecksum(kvrpcpb.RawChecksumRequest) returns (kvrpcpb.RawChecksumResponse) {}
 
+    // Redis command
+    rpc RedisCommand(kvrpcpb.RedisCommandRequest) returns (kvrpcpb.RedisCommandResponse ) {}
+
     // Store commands (sent to a each TiKV node in a cluster, rather than a certain region).
     rpc UnsafeDestroyRange(kvrpcpb.UnsafeDestroyRangeRequest) returns (kvrpcpb.UnsafeDestroyRangeResponse) {}
     rpc RegisterLockObserver(kvrpcpb.RegisterLockObserverRequest) returns (kvrpcpb.RegisterLockObserverResponse) {}

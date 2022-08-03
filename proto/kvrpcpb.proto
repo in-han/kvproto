@@ -18,6 +18,24 @@ option java_package = "org.tikv.kvproto";
 // This proto file defines requests, responses, and helper messages for KV and raw
 // APIs of TiKV (see tikvpb.proto).
 
+// Redis command 
+message RedisCommandRequest {
+    kvrpcpb.Context context = 1;
+    bytes cmd = 2;
+    bytes key = 3;
+    bytes request = 4;
+}
+
+message RedisCommandResponse {
+    // A region error indicates that the request was sent to the wrong TiKV node
+    // (or other, similar errors).
+    errorpb.Error region_error = 1;
+    // A value could not be retrieved due to the state of the database for the requested key.
+    string error = 2;
+    // A successful result.
+    bytes response = 3;
+}
+
 // Transactional commands.
 
 // A transactional get command. Lookup a value for `key` in the transaction with
